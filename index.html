@@ -572,6 +572,112 @@
       border: 1.6px solid rgba(255, 127, 189, 0.26);
     }
 
+    .order-builder {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255, 241, 248, 0.96), rgba(255, 250, 226, 0.94));
+      border: 1.6px solid rgba(255, 127, 189, 0.28);
+      box-shadow: 0 13px 28px rgba(255, 127, 189, 0.10);
+    }
+
+    .menu-picker-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr auto;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .add-menu-button {
+      margin-top: 0;
+      min-height: 56px;
+      white-space: nowrap;
+      padding-inline: 22px;
+    }
+
+    .cart-box {
+      margin-top: 17px;
+      padding: 15px;
+      border-radius: 23px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1.5px dashed rgba(207, 47, 120, 0.25);
+    }
+
+    .cart-title {
+      margin: 0 0 11px;
+      color: var(--pink-deep);
+      font-weight: 900;
+      font-size: 16px;
+    }
+
+    .cart-empty {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 650;
+      font-style: italic;
+    }
+
+    .cart-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 11px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(207, 47, 120, 0.13);
+    }
+
+    .cart-row:last-child {
+      border-bottom: 0;
+    }
+
+    .cart-name {
+      color: var(--brown);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .cart-detail {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .cart-subtotal {
+      color: var(--pink-deep);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .remove-cart-button {
+      margin: 0;
+      padding: 8px 11px;
+      border-radius: 14px;
+      font-size: 12px;
+      background: linear-gradient(135deg, #ff8a8a, #d93682);
+      box-shadow: none;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 12px;
+      padding-top: 13px;
+      border-top: 1.6px dashed rgba(207, 47, 120, 0.20);
+      color: var(--brown);
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .cart-total strong {
+      color: var(--pink-deep);
+    }
+
     .scroll-box {
       position: relative;
       z-index: 1;
@@ -983,7 +1089,8 @@
         height: 43px;
       }
 
-      .two-column {
+      .two-column,
+      .menu-picker-grid {
         grid-template-columns: 1fr;
       }
 
@@ -995,6 +1102,14 @@
       .customer-card,
       .order-card {
         padding: 19px;
+      }
+
+      .cart-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-subtotal {
+        white-space: normal;
       }
 
       #orderList {
@@ -1144,17 +1259,38 @@
             <label for="tableNumber">Nomor Meja</label>
             <input type="number" id="tableNumber" min="1" placeholder="Contoh: 5" required />
           </div>
-
-          <div>
-            <label for="qty">Jumlah Pesanan</label>
-            <input type="number" id="qty" min="1" value="1" required />
-          </div>
         </div>
 
-        <label for="menuSelect">Pilih Menu</label>
-        <select id="menuSelect" required>
-          <option value="">Pilih restoran dulu</option>
-        </select>
+        <div class="order-builder">
+          <div class="menu-picker-grid">
+            <div>
+              <label for="menuSelect">Pilih Menu</label>
+              <select id="menuSelect">
+                <option value="">Pilih restoran dulu</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="qty">Jumlah</label>
+              <input type="number" id="qty" min="1" value="1" />
+            </div>
+
+            <button type="button" id="addMenuButton" class="add-menu-button">
+              + Tambah Menu
+            </button>
+          </div>
+
+          <div class="cart-box">
+            <p class="cart-title">♡ Menu yang Dipilih</p>
+            <div id="cartList">
+              <p class="cart-empty">Belum ada menu dipilih.</p>
+            </div>
+            <div id="cartTotal" class="cart-total" style="display: none;">
+              <span>Total Pesanan</span>
+              <strong>Rp 0</strong>
+            </div>
+          </div>
+        </div>
 
         <button type="submit">Buat Pesanan ✦</button>
 
@@ -1213,6 +1349,9 @@
     const menuSelect = document.getElementById("menuSelect");
     const tableNumberInput = document.getElementById("tableNumber");
     const qtyInput = document.getElementById("qty");
+    const addMenuButton = document.getElementById("addMenuButton");
+    const cartList = document.getElementById("cartList");
+    const cartTotal = document.getElementById("cartTotal");
     const orderForm = document.getElementById("orderForm");
     const orderMessage = document.getElementById("orderMessage");
     const orderList = document.getElementById("orderList");
@@ -1220,6 +1359,7 @@
     let stopMenuListener = null;
     let stopOrderMenuListener = null;
     let selectedMenuData = null;
+    let orderCart = [];
 
     function formatRupiah(number) {
       return new Intl.NumberFormat("id-ID", {
@@ -1256,6 +1396,56 @@
       const start = phone.slice(0, 4);
       const end = phone.slice(-3);
       return start + "*****" + end;
+    }
+
+    function getCartTotal() {
+      return orderCart.reduce(function (total, item) {
+        return total + item.subtotal;
+      }, 0);
+    }
+
+    function renderCart() {
+      if (orderCart.length === 0) {
+        cartList.innerHTML = '<p class="cart-empty">Belum ada menu dipilih.</p>';
+        cartTotal.style.display = "none";
+        cartTotal.innerHTML = `
+          <span>Total Pesanan</span>
+          <strong>${formatRupiah(0)}</strong>
+        `;
+        return;
+      }
+
+      let cartHTML = "";
+
+      orderCart.forEach(function (item, index) {
+        cartHTML += `
+          <div class="cart-row">
+            <div>
+              <div class="cart-name">${item.qty}× ${item.name}</div>
+              <span class="cart-detail">
+                ${formatRupiah(item.unitPrice)} / item
+              </span>
+            </div>
+
+            <div class="cart-subtotal">${formatRupiah(item.subtotal)}</div>
+
+            <button
+              type="button"
+              class="remove-cart-button"
+              data-index="${index}"
+            >
+              Hapus
+            </button>
+          </div>
+        `;
+      });
+
+      cartList.innerHTML = cartHTML;
+      cartTotal.style.display = "flex";
+      cartTotal.innerHTML = `
+        <span>Total Pesanan</span>
+        <strong>${formatRupiah(getCartTotal())}</strong>
+      `;
     }
 
     async function getNameFromReference(referenceValue, collectionName) {
@@ -1308,7 +1498,6 @@
         const item = itemSnap.data();
         const qty = item.qty || 0;
         const menuName = item.menuName || "-";
-        const menuId = item.menuId || "-";
         const unitPrice = item.unitPrice || 0;
         const subtotal = item.subtotal || 0;
 
@@ -1476,6 +1665,8 @@
       const restaurantId = orderRestaurantSelect.value;
 
       selectedMenuData = null;
+      orderCart = [];
+      renderCart();
 
       if (stopOrderMenuListener) {
         stopOrderMenuListener();
@@ -1531,22 +1722,68 @@
       };
     });
 
+    addMenuButton.addEventListener("click", function () {
+      const qty = Number(qtyInput.value);
+
+      if (!selectedMenuData) {
+        showOrderMessage("error", "Pilih menu terlebih dahulu.");
+        return;
+      }
+
+      if (!qty || qty < 1) {
+        showOrderMessage("error", "Jumlah menu minimal 1.");
+        return;
+      }
+
+      const existingItem = orderCart.find(function (item) {
+        return item.id === selectedMenuData.id;
+      });
+
+      if (existingItem) {
+        existingItem.qty += qty;
+        existingItem.subtotal = existingItem.qty * existingItem.unitPrice;
+      } else {
+        orderCart.push({
+          id: selectedMenuData.id,
+          name: selectedMenuData.name,
+          qty: qty,
+          unitPrice: selectedMenuData.price,
+          subtotal: qty * selectedMenuData.price
+        });
+      }
+
+      renderCart();
+
+      showOrderMessage("success", "Menu berhasil ditambahkan ke pesanan.");
+
+      menuSelect.value = "";
+      qtyInput.value = 1;
+      selectedMenuData = null;
+    });
+
+    cartList.addEventListener("click", function (event) {
+      if (!event.target.classList.contains("remove-cart-button")) {
+        return;
+      }
+
+      const index = Number(event.target.getAttribute("data-index"));
+      orderCart.splice(index, 1);
+      renderCart();
+    });
+
     orderForm.addEventListener("submit", async function (event) {
       event.preventDefault();
 
       const customerId = customerSelect.value;
       const restaurantId = orderRestaurantSelect.value;
       const tableNumber = Number(tableNumberInput.value);
-      const qty = Number(qtyInput.value);
 
-      if (!customerId || !restaurantId || !selectedMenuData || !tableNumber || !qty) {
-        showOrderMessage("error", "Lengkapi semua data pesanan terlebih dahulu.");
+      if (!customerId || !restaurantId || !tableNumber || orderCart.length === 0) {
+        showOrderMessage("error", "Lengkapi customer, restoran, nomor meja, dan minimal 1 menu pesanan.");
         return;
       }
 
-      const unitPrice = selectedMenuData.price;
-      const subtotal = qty * unitPrice;
-      const totalPrice = subtotal;
+      const totalPrice = getCartTotal();
 
       try {
         const orderRef = await addDoc(collection(db, "orders"), {
@@ -1558,19 +1795,23 @@
           createdAt: serverTimestamp()
         });
 
-        await addDoc(collection(db, "orders", orderRef.id, "orderItems"), {
-          menuId: selectedMenuData.id,
-          menuName: selectedMenuData.name,
-          qty: qty,
-          unitPrice: unitPrice,
-          subtotal: subtotal
-        });
+        for (const item of orderCart) {
+          await addDoc(collection(db, "orders", orderRef.id, "orderItems"), {
+            menuId: item.id,
+            menuName: item.name,
+            qty: item.qty,
+            unitPrice: item.unitPrice,
+            subtotal: item.subtotal
+          });
+        }
 
-        showOrderMessage("success", "Pesanan berhasil dibuat dan masuk ke Firestore.");
+        showOrderMessage("success", "Pesanan berhasil dibuat dengan beberapa menu.");
 
         orderForm.reset();
         menuSelect.innerHTML = '<option value="">Pilih restoran dulu</option>';
         selectedMenuData = null;
+        orderCart = [];
+        renderCart();
       } catch (error) {
         console.error("Gagal membuat pesanan:", error);
         showOrderMessage("error", "Gagal membuat pesanan. Cek koneksi atau Firestore Rules.");
@@ -1688,6 +1929,8 @@
         alert("Gagal update status pesanan.");
       }
     });
+
+    renderCart();
   </script>
 </body>
 </html>
