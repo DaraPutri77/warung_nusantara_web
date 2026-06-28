@@ -7,36 +7,23 @@
   <title>Warung Nusantara</title>
 
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&family=Baloo+2:wght@500;600;700;800&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;800&family=Pacifico&family=Baloo+2:wght@600;700;800&display=swap");
 
     :root {
       --hot-pink: #ff3f9f;
       --pink-main: #ff79bd;
-      --pink-bright: #ff9bd2;
+      --pink-soft: #ffe5f3;
       --pink-dark: #cf2f78;
       --pink-deep: #81264e;
-      --pink-soft: #ffe3f2;
-      --pink-cloud: #fff5fb;
-      --purple-soft: #f3dcff;
       --cream: #fff8df;
-      --yellow-soft: #fff0ae;
-      --mint: #dfffee;
       --white: #ffffff;
       --brown: #51233a;
       --text: #42283a;
       --muted: #856779;
       --green: #139b56;
-      --danger: #d93682;
-
-      --shadow-glow: 0 0 28px rgba(255, 79, 163, 0.32);
-      --shadow-pink: 0 20px 55px rgba(255, 79, 163, 0.26);
-      --shadow-soft: 0 16px 38px rgba(86, 35, 63, 0.10);
+      --orange: #ff944d;
+      --purple: #8b7cf6;
       --border-pink: rgba(255, 121, 189, 0.34);
-      --glass: rgba(255, 255, 255, 0.78);
-      --radius-xl: 38px;
-      --radius-lg: 28px;
-      --radius-md: 22px;
-      --radius-sm: 16px;
     }
 
     * {
@@ -53,10 +40,10 @@
       font-family: "Fredoka", "Segoe UI", Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 8% 10%, rgba(255, 121, 189, 0.58), transparent 22%),
-        radial-gradient(circle at 88% 10%, rgba(243, 220, 255, 0.84), transparent 25%),
-        radial-gradient(circle at 82% 78%, rgba(255, 240, 174, 0.64), transparent 24%),
-        radial-gradient(circle at 18% 85%, rgba(255, 190, 223, 0.54), transparent 25%),
+        radial-gradient(circle at 8% 10%, rgba(255, 121, 189, 0.50), transparent 22%),
+        radial-gradient(circle at 88% 10%, rgba(243, 220, 255, 0.78), transparent 25%),
+        radial-gradient(circle at 82% 78%, rgba(255, 240, 174, 0.60), transparent 24%),
+        radial-gradient(circle at 18% 85%, rgba(255, 190, 223, 0.50), transparent 25%),
         linear-gradient(135deg, #fff0f8 0%, #fff8df 42%, #ffdff0 100%);
       overflow-x: hidden;
     }
@@ -65,32 +52,21 @@
       content: "";
       position: fixed;
       inset: 0;
-      z-index: -3;
-      pointer-events: none;
-      background-image:
-        radial-gradient(circle, rgba(255, 63, 159, 0.15) 2px, transparent 2px),
-        radial-gradient(circle, rgba(255, 196, 225, 0.9) 2px, transparent 2px),
-        radial-gradient(circle, rgba(255, 236, 160, 0.65) 2px, transparent 2px);
-      background-size: 42px 42px, 68px 68px, 92px 92px;
-      background-position: 0 0, 20px 22px, 46px 18px;
-      animation: bgMove 18s linear infinite;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
       z-index: -2;
       pointer-events: none;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,0.36), transparent 24%, rgba(255,255,255,0.36)),
-        radial-gradient(circle at center, transparent 34%, rgba(255, 134, 196, 0.16));
+      background-image:
+        radial-gradient(circle, rgba(255, 63, 159, 0.13) 2px, transparent 2px),
+        radial-gradient(circle, rgba(255, 196, 225, 0.70) 2px, transparent 2px),
+        radial-gradient(circle, rgba(255, 236, 160, 0.50) 2px, transparent 2px);
+      background-size: 42px 42px, 68px 68px, 92px 92px;
+      animation: bgMove 18s linear infinite;
     }
 
     @keyframes bgMove {
       from {
         background-position: 0 0, 20px 22px, 46px 18px;
       }
+
       to {
         background-position: 120px 80px, 160px 140px, 200px 120px;
       }
@@ -115,60 +91,25 @@
       background: rgba(255, 255, 255, 0.58);
       color: rgba(255, 63, 159, 0.72);
       font-size: 23px;
-      box-shadow:
-        0 12px 26px rgba(255, 79, 163, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      box-shadow: 0 12px 26px rgba(255, 79, 163, 0.15);
       backdrop-filter: blur(7px);
       animation: floatCute 9s ease-in-out infinite;
     }
 
-    .floating-decor span:nth-child(1) {
-      left: 4%;
-      top: 16%;
-      animation-delay: 0s;
-    }
-
-    .floating-decor span:nth-child(2) {
-      right: 5%;
-      top: 18%;
-      animation-delay: 1.5s;
-    }
-
-    .floating-decor span:nth-child(3) {
-      left: 7%;
-      bottom: 16%;
-      animation-delay: 3s;
-    }
-
-    .floating-decor span:nth-child(4) {
-      right: 8%;
-      bottom: 13%;
-      animation-delay: 4.2s;
-    }
-
-    .floating-decor span:nth-child(5) {
-      left: 48%;
-      top: 8%;
-      animation-delay: 2.4s;
-    }
-
-    .floating-decor span:nth-child(6) {
-      left: 24%;
-      top: 36%;
-      animation-delay: 5.1s;
-    }
-
-    .floating-decor span:nth-child(7) {
-      right: 23%;
-      bottom: 34%;
-      animation-delay: 6.2s;
-    }
+    .floating-decor span:nth-child(1) { left: 4%; top: 16%; }
+    .floating-decor span:nth-child(2) { right: 5%; top: 18%; animation-delay: 1.5s; }
+    .floating-decor span:nth-child(3) { left: 7%; bottom: 16%; animation-delay: 3s; }
+    .floating-decor span:nth-child(4) { right: 8%; bottom: 13%; animation-delay: 4.2s; }
+    .floating-decor span:nth-child(5) { left: 48%; top: 8%; animation-delay: 2.4s; }
+    .floating-decor span:nth-child(6) { left: 24%; top: 36%; animation-delay: 5.1s; }
+    .floating-decor span:nth-child(7) { right: 23%; bottom: 34%; animation-delay: 6.2s; }
 
     @keyframes floatCute {
       0%, 100% {
         transform: translateY(0) rotate(0deg) scale(1);
         opacity: 0.72;
       }
+
       50% {
         transform: translateY(-24px) rotate(12deg) scale(1.1);
         opacity: 1;
@@ -182,19 +123,18 @@
     }
 
     header {
-      max-width: 1200px;
+      max-width: 1120px;
       margin: 22px auto 0;
-      padding: 64px 28px 68px;
+      padding: 54px 28px 58px;
       text-align: center;
       color: white;
-      border-radius: 0 0 54px 54px;
+      border-radius: 0 0 50px 50px;
       background:
         radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.38), transparent 15%),
         radial-gradient(circle at 84% 35%, rgba(255, 240, 174, 0.30), transparent 16%),
         linear-gradient(135deg, #ff86c5 0%, #ff4fa3 45%, #cf2f78 100%);
       box-shadow:
-        0 22px 58px rgba(255, 63, 159, 0.36),
-        0 0 34px rgba(255, 127, 189, 0.30),
+        0 22px 58px rgba(255, 63, 159, 0.32),
         inset 0 -12px 34px rgba(129, 38, 78, 0.19);
       overflow: hidden;
       border: 1.6px solid rgba(255, 255, 255, 0.46);
@@ -206,10 +146,8 @@
       left: 45px;
       top: 34px;
       font-size: 72px;
-      color: rgba(255, 255, 255, 0.44);
+      color: rgba(255, 255, 255, 0.38);
       transform: rotate(-17deg);
-      filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.70));
-      animation: pulseHeart 2.4s ease-in-out infinite;
     }
 
     header::after {
@@ -218,28 +156,8 @@
       right: 56px;
       bottom: 40px;
       font-size: 70px;
-      color: rgba(255, 255, 255, 0.46);
+      color: rgba(255, 255, 255, 0.42);
       transform: rotate(14deg);
-      filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.80));
-      animation: sparkleSpin 4s ease-in-out infinite;
-    }
-
-    @keyframes pulseHeart {
-      0%, 100% {
-        transform: rotate(-17deg) scale(1);
-      }
-      50% {
-        transform: rotate(-10deg) scale(1.12);
-      }
-    }
-
-    @keyframes sparkleSpin {
-      0%, 100% {
-        transform: rotate(14deg) scale(1);
-      }
-      50% {
-        transform: rotate(34deg) scale(1.1);
-      }
     }
 
     .hero-kicker {
@@ -254,49 +172,24 @@
       backdrop-filter: blur(9px);
       font-size: 15px;
       font-weight: 700;
-      letter-spacing: 0.4px;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.38),
-        0 10px 24px rgba(129, 38, 78, 0.15);
     }
 
     header h1 {
       margin: 0;
       font-family: "Pacifico", "Fredoka", cursive;
-      font-size: clamp(52px, 7.5vw, 96px);
+      font-size: clamp(50px, 7.2vw, 88px);
       line-height: 1.05;
-      letter-spacing: 1px;
       color: #ffffff;
       text-shadow:
         0 0 8px rgba(255, 255, 255, 0.95),
-        0 0 18px rgba(255, 214, 237, 0.96),
-        0 0 42px rgba(255, 127, 189, 0.72),
+        0 0 28px rgba(255, 214, 237, 0.96),
         0 7px 23px rgba(129, 38, 78, 0.36);
-      animation: glowTitle 2.6s ease-in-out infinite alternate;
-    }
-
-    @keyframes glowTitle {
-      from {
-        text-shadow:
-          0 0 8px rgba(255, 255, 255, 0.85),
-          0 0 18px rgba(255, 214, 237, 0.90),
-          0 0 32px rgba(255, 127, 189, 0.52),
-          0 7px 22px rgba(129, 38, 78, 0.32);
-      }
-      to {
-        text-shadow:
-          0 0 14px rgba(255, 255, 255, 1),
-          0 0 32px rgba(255, 241, 250, 1),
-          0 0 56px rgba(255, 127, 189, 0.88),
-          0 0 80px rgba(255, 63, 159, 0.45),
-          0 9px 26px rgba(129, 38, 78, 0.40);
-      }
     }
 
     header p {
       margin: 19px auto 0;
       max-width: 780px;
-      font-size: clamp(17px, 2vw, 22px);
+      font-size: clamp(16px, 2vw, 21px);
       line-height: 1.6;
       font-weight: 700;
       color: #fff8fc;
@@ -318,13 +211,10 @@
       border: 1.2px solid rgba(255, 255, 255, 0.40);
       font-weight: 700;
       backdrop-filter: blur(8px);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.34),
-        0 8px 20px rgba(129, 38, 78, 0.12);
     }
 
     .cute-nav {
-      max-width: 1120px;
+      max-width: 1080px;
       margin: 22px auto 0;
       padding: 0 18px;
       display: flex;
@@ -351,11 +241,10 @@
     .cute-nav a:hover {
       transform: translateY(-3px);
       background: linear-gradient(135deg, #fff, #ffe4f2);
-      box-shadow: 0 16px 28px rgba(255, 79, 163, 0.18);
     }
 
     main {
-      max-width: 1120px;
+      max-width: 1080px;
       margin: 32px auto 62px;
       padding: 0 18px;
     }
@@ -364,7 +253,7 @@
       position: relative;
       margin-bottom: 30px;
       padding: 32px;
-      border-radius: var(--radius-xl);
+      border-radius: 38px;
       background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.90), rgba(255, 245, 251, 0.86)),
         radial-gradient(circle at 100% 0%, rgba(255, 127, 189, 0.18), transparent 32%);
@@ -372,20 +261,8 @@
       border: 1.7px solid rgba(255, 127, 189, 0.25);
       box-shadow:
         0 20px 48px rgba(255, 127, 189, 0.14),
-        0 0 26px rgba(255, 127, 189, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.78);
       overflow: hidden;
-    }
-
-    section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: inherit;
-      background:
-        radial-gradient(circle at 8% 0%, rgba(255, 127, 189, 0.12), transparent 24%),
-        radial-gradient(circle at 100% 80%, rgba(255, 241, 184, 0.24), transparent 22%);
     }
 
     section::after {
@@ -410,10 +287,6 @@
       font-size: clamp(34px, 4.2vw, 50px);
       line-height: 1.1;
       font-weight: 800;
-      letter-spacing: 0.2px;
-      text-shadow:
-        0 0 13px rgba(255, 127, 189, 0.25),
-        0 7px 17px rgba(255, 127, 189, 0.12);
     }
 
     h2::before {
@@ -424,24 +297,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background:
-        radial-gradient(circle at 35% 30%, white, #ffd6ea 55%, #ff9fca 100%);
+      background: radial-gradient(circle at 35% 30%, white, #ffd6ea 55%, #ff9fca 100%);
       color: var(--pink-dark);
       font-size: 25px;
-      box-shadow:
-        0 0 20px rgba(255, 127, 189, 0.44),
-        0 11px 22px rgba(255, 127, 189, 0.19);
+      box-shadow: 0 0 20px rgba(255, 127, 189, 0.44);
       flex: 0 0 auto;
-      animation: miniPulse 2.6s ease-in-out infinite;
-    }
-
-    @keyframes miniPulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.08);
-      }
     }
 
     label {
@@ -453,7 +313,6 @@
       color: var(--brown);
       font-size: 16px;
       font-weight: 800;
-      letter-spacing: 0.1px;
     }
 
     select,
@@ -464,26 +323,19 @@
       padding: 16px 18px;
       border-radius: 21px;
       border: 2px solid rgba(255, 127, 189, 0.31);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 248, 252, 0.97));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 248, 252, 0.97));
       color: var(--text);
       outline: none;
       font-family: "Fredoka", "Segoe UI", Arial, sans-serif;
       font-size: 16px;
       font-weight: 500;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.88),
-        0 9px 20px rgba(255, 127, 189, 0.06);
       transition: 0.22s ease;
     }
 
     select:focus,
     input:focus {
       border-color: var(--hot-pink);
-      box-shadow:
-        0 0 0 5px rgba(255, 79, 163, 0.15),
-        0 0 26px rgba(255, 79, 163, 0.19),
-        inset 0 1px 0 rgba(255, 255, 255, 0.90);
+      box-shadow: 0 0 0 5px rgba(255, 79, 163, 0.15);
       background: white;
     }
 
@@ -498,8 +350,7 @@
       padding: 15px 30px;
       border: 0;
       border-radius: 23px;
-      background:
-        linear-gradient(135deg, #ff8ac8 0%, #ff4fa3 44%, #cf2f78 100%);
+      background: linear-gradient(135deg, #ff8ac8 0%, #ff4fa3 44%, #cf2f78 100%);
       color: white;
       font-family: "Fredoka", "Segoe UI", Arial, sans-serif;
       font-size: 17px;
@@ -507,34 +358,12 @@
       cursor: pointer;
       box-shadow:
         0 17px 30px rgba(207, 47, 120, 0.30),
-        0 0 24px rgba(255, 127, 189, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.36);
+        0 0 24px rgba(255, 127, 189, 0.28);
       transition: 0.22s ease;
-      overflow: hidden;
-    }
-
-    button::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      transform: translateX(-120%) skewX(-20deg);
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.60), transparent);
-      transition: 0.55s ease;
     }
 
     button:hover {
       transform: translateY(-3px) scale(1.015);
-      box-shadow:
-        0 22px 36px rgba(207, 47, 120, 0.35),
-        0 0 36px rgba(255, 127, 189, 0.40);
-    }
-
-    button:hover::before {
-      transform: translateX(120%) skewX(-20deg);
-    }
-
-    button:active {
-      transform: translateY(0) scale(0.99);
     }
 
     .restaurant-card,
@@ -545,39 +374,11 @@
       margin-bottom: 17px;
       padding: 23px;
       border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.93), rgba(255, 243, 250, 0.93));
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.93), rgba(255, 243, 250, 0.93));
       border: 1.7px solid rgba(255, 127, 189, 0.26);
-      box-shadow:
-        0 15px 30px rgba(255, 127, 189, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.76);
+      box-shadow: 0 15px 30px rgba(255, 127, 189, 0.12);
       overflow: hidden;
       transition: 0.24s ease;
-    }
-
-    .restaurant-card::before,
-    .customer-card::before,
-    .order-card::before {
-      content: "";
-      position: absolute;
-      width: 160px;
-      height: 160px;
-      right: -64px;
-      bottom: -82px;
-      background:
-        radial-gradient(circle, rgba(255, 127, 189, 0.24), transparent 68%);
-      border-radius: 50%;
-    }
-
-    .restaurant-card::after,
-    .customer-card::after,
-    .order-card::after {
-      content: "✧";
-      position: absolute;
-      right: 24px;
-      top: 18px;
-      color: rgba(255, 79, 163, 0.22);
-      font-size: 34px;
     }
 
     .restaurant-card:hover,
@@ -586,9 +387,6 @@
     .menu-card:hover {
       transform: translateY(-5px);
       border-color: rgba(255, 79, 163, 0.40);
-      box-shadow:
-        0 24px 44px rgba(255, 79, 163, 0.18),
-        0 0 26px rgba(255, 127, 189, 0.15);
     }
 
     .restaurant-card h3,
@@ -601,7 +399,6 @@
       font-family: "Baloo 2", "Fredoka", sans-serif;
       font-size: 25px;
       font-weight: 800;
-      letter-spacing: 0.2px;
     }
 
     .restaurant-card p,
@@ -635,10 +432,8 @@
       color: #8a285e;
       font-size: 13px;
       font-weight: 800;
-      background:
-        linear-gradient(135deg, #ffd8ea 0%, #fff2c8 100%);
+      background: linear-gradient(135deg, #ffd8ea 0%, #fff2c8 100%);
       border: 1.2px solid rgba(255, 127, 189, 0.30);
-      box-shadow: 0 9px 18px rgba(255, 127, 189, 0.13);
     }
 
     .badge::before {
@@ -680,8 +475,6 @@
       justify-content: center;
       background: rgba(255, 255, 255, 0.78);
       color: var(--hot-pink);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 9px 20px rgba(255, 79, 163, 0.15);
     }
 
     .menu-card img {
@@ -689,16 +482,13 @@
       height: 165px;
       object-fit: cover;
       display: block;
-      background:
-        radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.68), transparent 28%),
-        linear-gradient(135deg, #ffd6ea 0%, #ffc1de 48%, #fff1b8 100%);
+      background: linear-gradient(135deg, #ffd6ea 0%, #ffc1de 48%, #fff1b8 100%);
       filter: saturate(1.05);
     }
 
     .menu-content {
       padding: 21px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 245, 251, 0.97));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 245, 251, 0.97));
     }
 
     .menu-content h3 {
@@ -719,7 +509,6 @@
       color: var(--pink-dark);
       font-size: 22px;
       font-weight: 800;
-      text-shadow: 0 0 12px rgba(255, 127, 189, 0.20);
     }
 
     .available {
@@ -740,7 +529,6 @@
       border-radius: 21px;
       display: none;
       font-weight: 800;
-      box-shadow: 0 10px 20px rgba(255, 127, 189, 0.10);
     }
 
     .message.success {
@@ -771,16 +559,6 @@
       gap: 21px;
     }
 
-    .status-row {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 14px;
-      align-items: end;
-      margin-top: 18px;
-    }
-
     .note {
       position: relative;
       z-index: 1;
@@ -790,42 +568,8 @@
       color: #7a3b5a;
       font-weight: 700;
       line-height: 1.6;
-      background:
-        linear-gradient(135deg, rgba(255, 238, 248, 0.95), rgba(255, 250, 221, 0.93));
+      background: linear-gradient(135deg, rgba(255, 238, 248, 0.95), rgba(255, 250, 221, 0.93));
       border: 1.6px solid rgba(255, 127, 189, 0.26);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
-    }
-
-    .order-items-box {
-      position: relative;
-      z-index: 1;
-      margin-top: 18px;
-      margin-bottom: 14px;
-      padding: 17px 18px;
-      border-radius: 22px;
-      background:
-        linear-gradient(135deg, rgba(255, 239, 248, 0.94), rgba(255, 250, 224, 0.94));
-      border: 1.5px solid rgba(255, 127, 189, 0.35);
-      box-shadow: 0 12px 24px rgba(255, 127, 189, 0.11);
-    }
-
-    .order-items-title {
-      margin: 0 0 10px;
-      color: var(--pink-deep);
-      font-weight: 900;
-      font-size: 17px;
-    }
-
-    .order-item-row {
-      margin-top: 10px;
-      padding: 13px 15px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.75);
-      border: 1px solid rgba(255, 127, 189, 0.23);
-    }
-
-    .order-item-row p {
-      margin: 5px 0;
     }
 
     .scroll-box {
@@ -848,16 +592,352 @@
     }
 
     .scroll-box::-webkit-scrollbar-thumb {
-      background:
-        linear-gradient(180deg, #ff8ac6, #ff4fa3, #cf2f78);
+      background: linear-gradient(180deg, #ff8ac6, #ff4fa3, #cf2f78);
       border-radius: 999px;
       border: 2px solid #fff0f7;
     }
 
     #customerList,
-    #orderList,
     #restaurantList {
       margin-top: 10px;
+    }
+
+    #orderList {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 390px));
+      justify-content: center;
+      align-items: start;
+      gap: 22px;
+    }
+
+    .receipt-card {
+      width: 100%;
+      max-width: 390px;
+      margin: 0;
+      padding: 0;
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255, 254, 251, 0.99), rgba(255, 245, 252, 0.99));
+      border: 2px solid rgba(255, 127, 189, 0.48);
+      box-shadow:
+        0 18px 38px rgba(255, 79, 163, 0.17),
+        0 0 22px rgba(255, 183, 219, 0.22);
+      overflow: visible;
+      transform-origin: center;
+    }
+
+    .receipt-card:hover {
+      transform: translateY(-5px) rotate(-0.4deg);
+    }
+
+    .receipt-card::before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      top: -8px;
+      height: 16px;
+      background:
+        radial-gradient(circle at 8px 8px, #ffd9ec 0 5.5px, transparent 6px);
+      background-size: 22px 16px;
+      z-index: 3;
+      opacity: 0.95;
+    }
+
+    .receipt-card::after {
+      content: "♡";
+      position: absolute;
+      right: 18px;
+      bottom: 13px;
+      font-size: 80px;
+      line-height: 1;
+      color: rgba(255, 127, 189, 0.07);
+      z-index: 1;
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+
+    .receipt-glow {
+      position: absolute;
+      inset: -2px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 12% 6%, rgba(255, 123, 189, 0.20), transparent 34%),
+        radial-gradient(circle at 92% 3%, rgba(255, 239, 172, 0.38), transparent 28%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .receipt-topbar {
+      position: relative;
+      z-index: 2;
+      padding: 16px 18px 13px;
+      border-radius: 28px 28px 0 0;
+      background:
+        linear-gradient(135deg, rgba(255, 235, 246, 0.98), rgba(255, 248, 218, 0.96));
+      border-bottom: 1.5px dashed rgba(207, 47, 120, 0.20);
+    }
+
+    .receipt-mini-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 9px;
+    }
+
+    .receipt-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--pink-deep);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(255, 127, 189, 0.23);
+    }
+
+    .receipt-time {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: white;
+      color: var(--pink-dark);
+      border: 1px solid rgba(255, 127, 189, 0.28);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .receipt-table-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .receipt-table-row h3 {
+      margin: 0;
+      color: var(--brown);
+      font-family: "Baloo 2", "Fredoka", sans-serif;
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .receipt-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      box-shadow: 0 9px 18px rgba(255, 79, 163, 0.18);
+    }
+
+    .receipt-status.pending {
+      background: linear-gradient(135deg, #ffb347, #ff8c42);
+    }
+
+    .receipt-status.cooking {
+      background: linear-gradient(135deg, #ff79bd, #cf2f78);
+    }
+
+    .receipt-status.ready {
+      background: linear-gradient(135deg, #25b86f, #13864e);
+    }
+
+    .receipt-status.done {
+      background: linear-gradient(135deg, #8b7cf6, #5d4fd6);
+    }
+
+    .receipt-body {
+      position: relative;
+      z-index: 2;
+      padding: 15px 18px 17px;
+    }
+
+    .receipt-shop {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1.5px dashed rgba(207, 47, 120, 0.18);
+    }
+
+    .receipt-restaurant {
+      margin: 0;
+      color: #9b6a3d;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 900;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .receipt-customer {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .receipt-customer strong {
+      color: var(--brown);
+      font-weight: 900;
+    }
+
+    .receipt-id {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-family: "Courier New", monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .receipt-menu {
+      padding-bottom: 10px;
+      border-bottom: 1.5px dashed rgba(207, 47, 120, 0.18);
+    }
+
+    .receipt-section-title {
+      margin: 0 0 9px;
+      color: var(--pink-deep);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .receipt-line {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: start;
+      padding: 7px 0;
+    }
+
+    .receipt-line + .receipt-line {
+      border-top: 1px dashed rgba(207, 47, 120, 0.10);
+    }
+
+    .receipt-line-name {
+      color: var(--brown);
+      font-family: "Courier New", monospace;
+      font-size: 13.5px;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+
+    .receipt-line-detail {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-family: "Fredoka", sans-serif;
+      font-size: 11.5px;
+      font-weight: 650;
+    }
+
+    .receipt-line-price {
+      color: var(--brown);
+      font-family: "Courier New", monospace;
+      font-size: 13.5px;
+      font-weight: 900;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .receipt-empty {
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 127, 189, 0.24);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .receipt-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0 13px;
+      border-bottom: 1.5px dashed rgba(207, 47, 120, 0.18);
+    }
+
+    .receipt-total span {
+      color: var(--brown);
+      font-family: "Baloo 2", "Fredoka", sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .receipt-total strong {
+      color: var(--pink-deep);
+      font-family: "Baloo 2", "Fredoka", sans-serif;
+      font-size: 23px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .receipt-control {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 9px;
+      align-items: end;
+      padding-top: 12px;
+    }
+
+    .receipt-control label {
+      margin: 0 0 5px;
+      font-size: 12px;
+      color: var(--pink-deep);
+    }
+
+    .receipt-control select {
+      min-height: 42px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: white;
+      font-size: 14px;
+      border-color: rgba(255, 127, 189, 0.35);
+    }
+
+    .receipt-control button {
+      min-height: 42px;
+      margin: 0;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .receipt-thanks {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      padding: 10px 14px 12px;
+      border-radius: 0 0 28px 28px;
+      background:
+        linear-gradient(135deg, rgba(255, 228, 242, 0.65), rgba(255, 248, 214, 0.55));
+      color: var(--pink-deep);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.4px;
     }
 
     @media (max-width: 760px) {
@@ -903,8 +983,7 @@
         height: 43px;
       }
 
-      .two-column,
-      .status-row {
+      .two-column {
         grid-template-columns: 1fr;
       }
 
@@ -916,6 +995,35 @@
       .customer-card,
       .order-card {
         padding: 19px;
+      }
+
+      #orderList {
+        grid-template-columns: 1fr;
+      }
+
+      .receipt-card {
+        max-width: 100%;
+      }
+
+      .receipt-table-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .receipt-line {
+        grid-template-columns: 1fr;
+      }
+
+      .receipt-line-price {
+        text-align: left;
+      }
+
+      .receipt-total strong {
+        font-size: 21px;
+      }
+
+      .receipt-control {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -1182,31 +1290,40 @@
 
       if (orderItemsSnapshot.empty) {
         return `
-          <div class="order-items-box">
-            <p class="order-items-title">♡ Menu Dipesan</p>
-            <div class="order-item-row">
-              <p><strong>Detail menu belum tersedia.</strong></p>
-              <p>Sub-koleksi <strong>orderItems</strong> pada pesanan ini masih kosong.</p>
+          <div class="receipt-menu">
+            <p class="receipt-section-title">♡ Menu Dipesan</p>
+            <div class="receipt-empty">
+              Detail menu belum tersedia. Sub-koleksi orderItems pada pesanan ini masih kosong.
             </div>
           </div>
         `;
       }
 
       let itemsHTML = `
-        <div class="order-items-box">
-          <p class="order-items-title">♡ Menu Dipesan</p>
+        <div class="receipt-menu">
+          <p class="receipt-section-title">♡ Menu Dipesan</p>
       `;
 
       orderItemsSnapshot.forEach(function (itemSnap) {
         const item = itemSnap.data();
+        const qty = item.qty || 0;
+        const menuName = item.menuName || "-";
+        const menuId = item.menuId || "-";
+        const unitPrice = item.unitPrice || 0;
+        const subtotal = item.subtotal || 0;
 
         itemsHTML += `
-          <div class="order-item-row">
-            <p><strong>Nama Menu:</strong> ${item.menuName || "-"}</p>
-            <p><strong>Menu ID:</strong> ${item.menuId || "-"}</p>
-            <p><strong>Jumlah:</strong> ${item.qty || 0}</p>
-            <p><strong>Harga Satuan:</strong> ${formatRupiah(item.unitPrice)}</p>
-            <p><strong>Subtotal:</strong> ${formatRupiah(item.subtotal)}</p>
+          <div class="receipt-line">
+            <div class="receipt-line-name">
+              ${qty}× ${menuName}
+              <span class="receipt-line-detail">
+                ${formatRupiah(unitPrice)} / item
+              </span>
+            </div>
+
+            <div class="receipt-line-price">
+              ${formatRupiah(subtotal)}
+            </div>
           </div>
         `;
       });
@@ -1477,36 +1594,75 @@
         const restaurantName = await getNameFromReference(order.restaurantId, "restaurants");
         const orderItemsHTML = await getOrderItemsHTML(docSnap.id);
 
+        const createdTime = order.createdAt && typeof order.createdAt.toDate === "function"
+          ? order.createdAt.toDate().toLocaleTimeString("id-ID", {
+              hour: "2-digit",
+              minute: "2-digit"
+            })
+          : "-";
+
+        const statusText = order.status || "pending";
+
+        const statusLabel = {
+          pending: "PENDING",
+          cooking: "DIMASAK",
+          ready: "SIAP",
+          done: "SELESAI"
+        };
+
         orderList.innerHTML += `
-          <div class="order-card">
-            <h3>Pesanan: ${docSnap.id}</h3>
-            <p><strong>Customer:</strong> ${customerName}</p>
-            <p><strong>Restoran:</strong> ${restaurantName}</p>
-            <p><strong>Nomor Meja:</strong> ${order.tableNumber}</p>
-            <p><strong>Status Saat Ini:</strong> ${order.status}</p>
+          <div class="order-card receipt-card">
+            <div class="receipt-glow"></div>
 
-            ${orderItemsHTML}
-
-            <p><strong>Total:</strong> ${formatRupiah(order.totalPrice)}</p>
-
-            <div class="status-row">
-              <div>
-                <label for="status-${docSnap.id}">Ubah Status Pesanan</label>
-                <select id="status-${docSnap.id}" class="status-select">
-                  ${statusOptions(order.status)}
-                </select>
+            <div class="receipt-topbar">
+              <div class="receipt-mini-row">
+                <p class="receipt-label">♡ Struk Pesanan ♡</p>
+                <span class="receipt-time">${createdTime}</span>
               </div>
 
-              <button
-                type="button"
-                class="update-status-button"
-                data-order-id="${docSnap.id}"
-              >
-                Update Status
-              </button>
+              <div class="receipt-table-row">
+                <h3>Meja #${order.tableNumber || "-"}</h3>
+                <span class="receipt-status ${statusText}">
+                  ${statusLabel[statusText] || statusText.toUpperCase()}
+                </span>
+              </div>
             </div>
 
-            <span class="badge">Masuk secara real-time</span>
+            <div class="receipt-body">
+              <div class="receipt-shop">
+                <p class="receipt-restaurant">${restaurantName}</p>
+                <p class="receipt-customer"><strong>Customer:</strong> ${customerName}</p>
+                <p class="receipt-id">Kode: ${docSnap.id}</p>
+              </div>
+
+              ${orderItemsHTML}
+
+              <div class="receipt-total">
+                <span>Total</span>
+                <strong>${formatRupiah(order.totalPrice)}</strong>
+              </div>
+
+              <div class="receipt-control">
+                <div>
+                  <label for="status-${docSnap.id}">Ubah Status</label>
+                  <select id="status-${docSnap.id}" class="status-select">
+                    ${statusOptions(statusText)}
+                  </select>
+                </div>
+
+                <button
+                  type="button"
+                  class="update-status-button"
+                  data-order-id="${docSnap.id}"
+                >
+                  Update
+                </button>
+              </div>
+            </div>
+
+            <div class="receipt-thanks">
+             ♡ Thank you for your order ♡
+            </div>
           </div>
         `;
       }
