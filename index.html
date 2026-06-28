@@ -358,12 +358,171 @@
       cursor: pointer;
       box-shadow:
         0 17px 30px rgba(207, 47, 120, 0.30),
-        0 0 24px rgba(255, 127, 189, 0.28);
+        0 0 24px rgba(255, 127, 189, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.34);
       transition: 0.22s ease;
+      overflow: hidden;
+      isolation: isolate;
+      transform: translateZ(0);
+    }
+
+    button::before {
+      content: "";
+      position: absolute;
+      top: -45%;
+      left: -85%;
+      width: 70%;
+      height: 190%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      transform: rotate(18deg);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.22),
+        rgba(255, 255, 255, 0.88),
+        rgba(255, 240, 250, 0.36),
+        transparent
+      );
+    }
+
+    button::after {
+      content: "";
+      position: absolute;
+      left: var(--spark-x, 50%);
+      top: var(--spark-y, 50%);
+      width: 20px;
+      height: 20px;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: 999px;
+      transform: translate(-50%, -50%) scale(0);
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.98) 0 10%, rgba(255, 231, 246, 0.88) 18%, rgba(255, 121, 189, 0.44) 40%, transparent 72%);
+      box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.95),
+        0 0 35px rgba(255, 121, 189, 0.85),
+        0 0 58px rgba(255, 63, 159, 0.48);
     }
 
     button:hover {
-      transform: translateY(-3px) scale(1.015);
+      transform: translateY(-3px) scale(1.018);
+      box-shadow:
+        0 20px 36px rgba(207, 47, 120, 0.34),
+        0 0 30px rgba(255, 127, 189, 0.55),
+        0 0 50px rgba(255, 210, 237, 0.40),
+        inset 0 1px 0 rgba(255, 255, 255, 0.42);
+      filter: saturate(1.08);
+    }
+
+    button:hover::before {
+      opacity: 1;
+      animation: buttonShine 1s ease;
+    }
+
+    button:active {
+      transform: translateY(0) scale(0.97);
+      box-shadow:
+        0 10px 18px rgba(207, 47, 120, 0.28),
+        0 0 42px rgba(255, 180, 223, 0.76),
+        0 0 75px rgba(255, 63, 159, 0.45);
+    }
+
+    button.button-click-glow {
+      animation: cuteButtonPop 0.55s ease;
+    }
+
+    button.button-click-glow::after {
+      animation: buttonMagicRipple 0.78s ease-out;
+    }
+
+    @keyframes buttonShine {
+      0% {
+        left: -90%;
+        opacity: 0;
+      }
+
+      18% {
+        opacity: 1;
+      }
+
+      100% {
+        left: 135%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes cuteButtonPop {
+      0% {
+        filter: brightness(1);
+      }
+
+      35% {
+        filter: brightness(1.2) saturate(1.22);
+        box-shadow:
+          0 0 22px rgba(255, 255, 255, 0.92),
+          0 0 38px rgba(255, 143, 205, 0.90),
+          0 0 68px rgba(255, 63, 159, 0.58);
+      }
+
+      100% {
+        filter: brightness(1);
+      }
+    }
+
+    @keyframes buttonMagicRipple {
+      0% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) scale(0.25);
+      }
+
+      65% {
+        opacity: 0.7;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(18);
+      }
+    }
+
+    .sparkle-dot {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      font-family: "Fredoka", "Segoe UI", Arial, sans-serif;
+      font-size: var(--spark-size, 16px);
+      line-height: 1;
+      color: var(--spark-color, #ffffff);
+      text-shadow:
+        0 0 7px rgba(255, 255, 255, 0.98),
+        0 0 16px rgba(255, 127, 189, 0.95),
+        0 0 28px rgba(255, 63, 159, 0.70);
+      animation: sparkleFly 0.85s ease-out forwards;
+    }
+
+    @keyframes sparkleFly {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.65) rotate(0deg);
+      }
+
+      55% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translate(
+            calc(-50% + var(--spark-tx, 0px)),
+            calc(-50% + var(--spark-ty, -40px))
+          )
+          scale(1.3)
+          rotate(var(--spark-rotate, 180deg));
+      }
     }
 
     .restaurant-card,
@@ -659,7 +818,9 @@
       border-radius: 14px;
       font-size: 12px;
       background: linear-gradient(135deg, #ff8a8a, #d93682);
-      box-shadow: none;
+      box-shadow:
+        0 10px 18px rgba(217, 54, 130, 0.20),
+        0 0 18px rgba(255, 138, 138, 0.20);
     }
 
     .cart-total {
@@ -1158,7 +1319,7 @@
   <header>
     <div class="hero-kicker">♡ Pinky Digital Ordering System ♡</div>
     <h1>Warung Nusantara</h1>
-    <p>Sistem Pemesanan Restoran Berbasis Firestore.</p>
+    <p>Manisnya rasa dalam setiap sajian.</p>
 
     <div class="hero-pills">
       <span>♡ Firestore</span>
@@ -1183,11 +1344,7 @@
     </section>
 
     <section id="customer">
-      <h2>Tambah Customer Kelas B</h2>
-
-      <div class="note">
-        Form ini digunakan agar mahasiswa kelas B dapat mengisi data customer secara valid sebelum membuat pesanan.
-      </div>
+      <h2>Tambah Customer</h2>
 
       <form id="customerForm">
         <div class="two-column">
@@ -1300,7 +1457,6 @@
 
     <section id="dapur">
       <h2>Pesanan Masuk Real-Time</h2>
-      <p>Staf dapur dapat melihat pesanan masuk dan memperbarui status pesanan.</p>
       <div id="orderList" class="loading">Memuat data pesanan...</div>
     </section>
   </main>
@@ -1397,6 +1553,64 @@
       const end = phone.slice(-3);
       return start + "*****" + end;
     }
+
+    function createButtonSparkles(event, button) {
+      const rect = button.getBoundingClientRect();
+      const clickX = event.clientX ? event.clientX - rect.left : rect.width / 2;
+      const clickY = event.clientY ? event.clientY - rect.top : rect.height / 2;
+
+      button.style.setProperty("--spark-x", clickX + "px");
+      button.style.setProperty("--spark-y", clickY + "px");
+
+      button.classList.remove("button-click-glow");
+      void button.offsetWidth;
+      button.classList.add("button-click-glow");
+
+      setTimeout(function () {
+        button.classList.remove("button-click-glow");
+      }, 800);
+
+      const symbols = ["✦", "♡", "✧", "˚", "❀", "✩"];
+      const colors = ["#ffffff", "#ffe0f1", "#fff3c4", "#ffc5e4", "#ffd7f0"];
+
+      for (let i = 0; i < 9; i++) {
+        const sparkle = document.createElement("span");
+        sparkle.className = "sparkle-dot";
+        sparkle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+        const startX = event.clientX || rect.left + rect.width / 2;
+        const startY = event.clientY || rect.top + rect.height / 2;
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 28 + Math.random() * 44;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance - 18;
+
+        sparkle.style.left = startX + "px";
+        sparkle.style.top = startY + "px";
+        sparkle.style.setProperty("--spark-tx", tx + "px");
+        sparkle.style.setProperty("--spark-ty", ty + "px");
+        sparkle.style.setProperty("--spark-rotate", (120 + Math.random() * 260) + "deg");
+        sparkle.style.setProperty("--spark-size", (12 + Math.random() * 9) + "px");
+        sparkle.style.setProperty("--spark-color", colors[Math.floor(Math.random() * colors.length)]);
+
+        document.body.appendChild(sparkle);
+
+        setTimeout(function () {
+          sparkle.remove();
+        }, 900);
+      }
+    }
+
+    document.addEventListener("click", function (event) {
+      const button = event.target.closest("button");
+
+      if (!button) {
+        return;
+      }
+
+      createButtonSparkles(event, button);
+    });
 
     function getCartTotal() {
       return orderCart.reduce(function (total, item) {
